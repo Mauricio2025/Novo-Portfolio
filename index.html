@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Maurício Souza | Full-stack & Mobile Architect</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -19,7 +19,7 @@
 
         /* Tipografia rigorosa do ecossistema Apple */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; cursor: none; }
-        body { background: #000; color: var(--text-main); overflow: hidden; }
+        body { background: #000; color: var(--text-main); overflow: hidden; touch-action: none; }
 
         /* --- BOOT SCREEN --- */
         #boot-screen {
@@ -33,7 +33,7 @@
         .boot-progress-container { width: 220px; height: 4px; background: #333; border-radius: 4px; overflow: hidden; }
         .boot-progress-bar { height: 100%; width: 0%; background: #fff; border-radius: 4px; transition: width 2s cubic-bezier(0.8, 0, 0.2, 1); }
 
-        /* --- CUSTOM CURSOR --- */
+        /* --- CUSTOM CURSOR (DESKTOP ONLY) --- */
         .custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: rgba(255, 255, 255, 0.8); border-radius: 50%; pointer-events: none; z-index: 99999; mix-blend-mode: difference; transition: width 0.2s, height 0.2s, background-color 0.2s; transform: translate(-50%, -50%); }
         .custom-cursor-follower { position: fixed; top: 0; left: 0; width: 30px; height: 30px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; pointer-events: none; z-index: 99998; transition: transform 0.1s ease-out, width 0.2s, height 0.2s; transform: translate(-50%, -50%); }
         .cursor-hover .custom-cursor { width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(2px); }
@@ -47,18 +47,6 @@
         }
         #macos-desktop.active { opacity: 1; }
 
-        /* --- DESKTOP ICONS --- */
-        .desktop-icons-container {
-            position: absolute; top: 40px; right: 20px; display: flex; flex-direction: column; gap: 20px; align-items: center; z-index: 50;
-        }
-        .desktop-icon {
-            display: flex; flex-direction: column; align-items: center; gap: 5px; width: 80px; text-align: center;
-            padding: 8px; border-radius: 6px; transition: background 0.2s;
-        }
-        .desktop-icon:hover { background: rgba(255,255,255,0.1); }
-        .desktop-icon span { font-size: 12px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.8); background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; }
-        .desktop-icon svg { width: 45px; height: 45px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-
         /* --- MENU BAR --- */
         .menu-bar {
             height: 28px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(40px) saturate(150%);
@@ -71,6 +59,18 @@
         .menu-item { transition: opacity 0.2s; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
         .menu-item:hover { opacity: 0.7; }
         .apple-menu-icon { width: 14px; height: 14px; fill: #fff; margin-top: -2px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+
+        /* --- DESKTOP ICONS --- */
+        .desktop-icons-container {
+            position: absolute; top: 40px; right: 20px; display: flex; flex-direction: column; gap: 20px; align-items: center; z-index: 50;
+        }
+        .desktop-icon {
+            display: flex; flex-direction: column; align-items: center; gap: 5px; width: 80px; text-align: center;
+            padding: 8px; border-radius: 6px; transition: background 0.2s;
+        }
+        .desktop-icon:hover { background: rgba(255,255,255,0.1); }
+        .desktop-icon span { font-size: 12px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.8); background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; }
+        .desktop-icon svg { width: 45px; height: 45px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
 
         /* --- DOCK --- */
         .dock-container {
@@ -116,6 +116,8 @@
         .mac-window.open { opacity: 1; transform: scale(1); pointer-events: auto; }
         .mac-window.maximized { top: 28px !important; left: 0 !important; width: 100vw !important; height: calc(100vh - 28px) !important; border-radius: 0; }
         
+        .ios-home-indicator { display: none; } /* Oculto no Desktop */
+
         /* --- HEADER SAFARI --- */
         .safari-titlebar {
             height: 52px; display: flex; align-items: center; padding: 0 16px;
@@ -152,7 +154,7 @@
         .safari-right { display: flex; align-items: center; justify-content: flex-end; gap: 18px; flex: 1; color: #a1a1a6; }
         .safari-right i:hover { color: #fff; }
 
-        .window-content { flex-grow: 1; overflow-y: auto; overflow-x: hidden; position: relative; scroll-behavior: smooth; background: #000; }
+        .window-content { flex-grow: 1; overflow-y: auto; overflow-x: hidden; position: relative; scroll-behavior: smooth; background: #000; touch-action: pan-y; }
         .window-content::-webkit-scrollbar { width: 10px; }
         .window-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; border: 2px solid #000; }
 
@@ -166,7 +168,7 @@
         .reveal.active { opacity: 1; transform: translateY(0); filter: blur(0); }
         
         .hero-section { height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        .hero-section h1 { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; letter-spacing: -0.05em; background: linear-gradient(180deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+        .hero-section h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; letter-spacing: -0.05em; background: linear-gradient(180deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
         
         /* BENTO GRID */
         .bento-container { max-width: 1050px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
@@ -188,27 +190,30 @@
         /* WORKSTATION (PROJETOS) */
         .workstation-container { max-width: 1050px; margin: 80px auto; padding: 0 20px; }
         .mac-emulator { background: rgba(20, 20, 22, 0.8); border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-        .mac-sidebar { display: flex; flex-direction: row; background: rgba(0,0,0,0.6); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; overflow-x: auto; gap: 8px; }
+        .mac-sidebar { display: flex; flex-direction: row; background: rgba(0,0,0,0.6); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; overflow-x: auto; gap: 8px; scrollbar-width: none; }
+        .mac-sidebar::-webkit-scrollbar { display: none; }
         .mac-tab { padding: 10px 18px; color: #aaa; background: transparent; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 500; transition: all 0.2s; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
         .mac-tab:hover { color: #fff; background: rgba(255,255,255,0.1); }
         .mac-tab.active { color: #fff; background: var(--ios-blue); box-shadow: 0 2px 10px rgba(0,113,227,0.4); }
         
         .browser-content { background: #0b0b0d; min-height: 400px; position: relative; }
-        .project-view { display: none; width: 100%; height: 100%; padding: 40px; overflow-y: auto; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
+        .project-view { display: none; width: 100%; height: 100%; padding: 40px 20px; overflow-y: auto; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
         .project-view.active { display: block; opacity: 1; transform: translateY(0); }
         .proj-badge { display: inline-block; padding: 6px 14px; background: rgba(0, 113, 227, 0.15); color: #66b3ff; border: 1px solid rgba(0,113,227,0.3); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 20px; letter-spacing: 0.5px; }
         
         .proj-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 25px; }
-        @media (min-width: 768px) { .proj-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 768px) { .proj-grid { grid-template-columns: 1fr 1fr; padding: 40px; } }
         .proj-feature { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); transition: transform 0.2s, background 0.2s; }
         .proj-feature:hover { background: rgba(255,255,255,0.06); transform: translateY(-3px); }
         
-        .proj-link-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 25px; padding: 12px 24px; background: #fff; color: #000; text-decoration: none; font-weight: 600; border-radius: 8px; transition: transform 0.2s; }
+        .proj-link-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 25px; padding: 12px 24px; background: #fff; color: #000; text-decoration: none; font-weight: 600; border-radius: 8px; transition: transform 0.2s; width: 100%; }
+        @media (min-width: 768px) { .proj-link-btn { width: auto; } }
         .proj-link-btn:hover { transform: scale(1.05); }
 
         /* FOOTER */
-        .footer-cta { text-align: center; padding: 100px 20px 80px; }
-        .apple-button { background: linear-gradient(135deg, var(--ios-blue), #0051a8); color: white; padding: 16px 40px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 1.1rem; display: inline-block; margin-top: 25px; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid rgba(255,255,255,0.2); }
+        .footer-cta { text-align: center; padding: 80px 20px 100px; }
+        .apple-button { background: linear-gradient(135deg, var(--ios-blue), #0051a8); color: white; padding: 16px 40px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 1.1rem; display: inline-flex; justify-content: center; align-items: center; margin-top: 15px; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid rgba(255,255,255,0.2); width: 100%; }
+        @media (min-width: 768px) { .apple-button { width: auto; margin-top: 25px; } }
         .apple-button:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,113,227,0.4); }
 
         /* TERMINAL CONTENT */
@@ -216,8 +221,76 @@
             height: 40px; background: rgba(40, 40, 40, 0.9); display: flex; align-items: center; padding: 0 16px;
             border-bottom: 1px solid rgba(0,0,0,0.8);
         }
-        .code-container { padding: 20px; font-family: "SF Mono", Menlo, Consolas, monospace; color: #a5d6ff; line-height: 1.6; font-size: 0.95rem; }
+        .code-container { padding: 20px; font-family: "SF Mono", Menlo, Consolas, monospace; color: #a5d6ff; line-height: 1.6; font-size: 0.85rem; }
+        @media (min-width: 768px) { .code-container { font-size: 0.95rem; } }
         .terminal-logs { margin-top: 20px; padding-top: 20px; border-top: 1px dashed rgba(255,255,255,0.2); color: var(--terminal-green); }
+
+
+        /* ========================================================
+           📱 IPHONE / MOBILE MEDIA QUERIES
+           ======================================================== */
+        @media (max-width: 768px) {
+            * { cursor: auto !important; }
+            .custom-cursor, .custom-cursor-follower { display: none !important; }
+            
+            /* Boot Logo iPhone size */
+            .boot-logo-svg { width: 60px; height: 60px; }
+            
+            /* Status Bar iOS Style */
+            .menu-bar {
+                height: 44px; padding: 0 24px; background: transparent; border-bottom: none; box-shadow: none;
+            }
+            .menu-left span, .menu-left b { display: none; }
+            #mac-clock { font-weight: 600; font-size: 15px; position: absolute; left: 24px; }
+            .menu-right { width: 100%; justify-content: flex-end; gap: 6px; }
+            
+            /* Home Screen Apps (Desktop Icons) */
+            .desktop-icons-container {
+                top: 60px; left: 20px; right: 20px;
+                display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; justify-items: center;
+            }
+            .desktop-icon { width: 100%; padding: 5px; }
+            .desktop-icon svg { width: 55px; height: 55px; background: rgba(255,255,255,0.1); border-radius: 14px; padding: 10px; backdrop-filter: blur(10px); }
+            .desktop-icon span { background: none; font-size: 11px; margin-top: 4px; text-shadow: 0 1px 2px rgba(0,0,0,0.8); padding: 0; }
+            
+            /* iOS Apps (Mac Windows become Fullscreen) */
+            .mac-window {
+                border-radius: 0; border: none;
+                top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important;
+                transform: translateY(100vh); opacity: 0;
+                transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.5s;
+            }
+            .mac-window.open {
+                transform: translateY(0); opacity: 1; z-index: 9999 !important;
+            }
+            
+            /* Safari Header Adjustments */
+            .safari-titlebar { height: 60px; padding-top: 10px; background: rgba(30,30,30,0.95); justify-content: center; }
+            .traffic-lights, .safari-nav-group, .safari-right { display: none; }
+            .safari-center { flex: none; width: 90%; }
+            .safari-url-box { height: 36px; border-radius: 10px; font-size: 15px; }
+            
+            /* Terminal Header Adjustments */
+            .terminal-header { height: 60px; padding-top: 10px; }
+            
+            /* Home Indicator (To close apps) */
+            .ios-home-indicator {
+                display: block; position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+                width: 135px; height: 5px; background: rgba(255,255,255,0.8); border-radius: 100px;
+                z-index: 10000; box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            }
+            .window-content { padding-bottom: 30px; } /* Space for indicator */
+
+            /* iOS Dock */
+            .dock-container {
+                bottom: 15px; width: calc(100% - 30px); border-radius: 30px;
+                padding: 15px 15px; background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(25px);
+                justify-content: space-between; gap: 0;
+            }
+            .dock-icon { width: 50px; height: 50px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+            .dock-icon:hover { transform: scale(1.1) translateY(-5px); margin: 0; }
+            .dock-tooltip, .dock-indicator { display: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -252,14 +325,14 @@
                 <span class="menu-item hover-target">Help</span>
             </div>
             <div class="menu-right">
-                <i data-lucide="wifi" size="14"></i>
-                <i data-lucide="battery-full" size="14"></i>
                 <span id="mac-clock">10:00 AM</span>
+                <i data-lucide="wifi" size="16"></i>
+                <i data-lucide="battery-full" size="18"></i>
             </div>
         </div>
 
         <div class="desktop-icons-container">
-            <div class="desktop-icon hover-target" ondblclick="openWindow('safari-app', 'dock-safari')">
+            <div class="desktop-icon hover-target" onclick="openWindow('safari-app', 'dock-safari')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#66b3ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                 <span>Projetos</span>
             </div>
@@ -304,14 +377,14 @@
                     
                     <section class="hero-section">
                         <h1 class="reveal">Maurício Souza</h1>
-                        <p class="reveal" style="color: var(--text-dim); font-size: 1.25rem; max-width: 600px; margin-top: 15px; line-height: 1.6;">Desenvolvedor Full-stack com mais de 6 anos de experiência em projetos web para startups e empresas. Especialista em MVPs de alta performance com interfaces modernas e Clean Code.</p>
+                        <p class="reveal" style="color: var(--text-dim); font-size: 1.1rem; max-width: 600px; margin-top: 15px; line-height: 1.6;">Desenvolvedor Full-stack com mais de 6 anos de experiência em projetos web para startups e empresas. Especialista em MVPs de alta performance com interfaces modernas e Clean Code.</p>
                     </section>
 
                     <div class="bento-container" id="bento-grid">
                         
                         <div class="bento-card span-8 reveal hover-target">
                             <span class="stat-label">Core Technologies</span>
-                            <div style="display: flex; gap: 25px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
+                            <div style="display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
                                 <div style="text-align: center;"><i data-lucide="zap" size="36" color="#FF2D20"></i><p style="font-size:0.85rem; margin-top:10px;">Laravel</p></div>
                                 <div style="text-align: center;"><i data-lucide="atom" size="36" color="#61DAFB"></i><p style="font-size:0.85rem; margin-top:10px;">React Native</p></div>
                                 <div style="text-align: center;"><i data-lucide="server" size="36" color="#339933"></i><p style="font-size:0.85rem; margin-top:10px;">Node.js</p></div>
@@ -329,7 +402,7 @@
 
                         <div class="bento-card span-6 reveal hover-target">
                             <span class="stat-label">Infraestrutura & Ferramentas</span>
-                            <div style="display: flex; flex-wrap: wrap; margin-top: 15px;">
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-top: 15px;">
                                 <span class="integration-badge hover-target"><i data-lucide="server-cog" size="14" color="#ff9900"></i> VPS / CPanel</span>
                                 <span class="integration-badge hover-target"><i data-lucide="blocks" size="14" color="#0071e3"></i> Webflow</span>
                                 <span class="integration-badge hover-target"><i data-lucide="network" size="14" color="#10a37f"></i> Modelagem de Dados</span>
@@ -351,47 +424,47 @@
                     </div>
 
                     <section class="workstation-container reveal">
-                        <div style="text-align: center; margin-bottom: 40px;">
-                            <h2 style="font-size: 2.2rem; letter-spacing: -1px;">Projetos & Atuação Recente</h2>
+                        <div style="text-align: center; margin-bottom: 30px;">
+                            <h2 style="font-size: 1.8rem; letter-spacing: -1px;">Projetos & Atuação Recente</h2>
                         </div>
 
                         <div class="mac-emulator">
                             <div class="mac-sidebar">
                                 <button class="mac-tab active hover-target" onclick="switchTab('odracir')"><i data-lucide="code" size="16"></i> OdracirCode</button>
-                                <button class="mac-tab hover-target" onclick="switchTab('cajuu')"><i data-lucide="truck" size="16"></i> Cajuu.app</button>
-                                <button class="mac-tab hover-target" onclick="switchTab('risus')"><i data-lucide="briefcase" size="16"></i> Agência Risus</button>
-                                <button class="mac-tab hover-target" onclick="switchTab('ia')"><i data-lucide="bot" size="16"></i> IA & Open Source</button>
+                                <button class="mac-tab hover-target" onclick="switchTab('cajuu')"><i data-lucide="truck" size="16"></i> Cajuu</button>
+                                <button class="mac-tab hover-target" onclick="switchTab('risus')"><i data-lucide="briefcase" size="16"></i> Risus</button>
+                                <button class="mac-tab hover-target" onclick="switchTab('ia')"><i data-lucide="bot" size="16"></i> IA & Code</button>
                             </div>
 
                             <div class="browser-content">
                                 
                                 <div id="tab-odracir" class="project-view active">
                                     <span class="proj-badge">Desenvolvedor Full-stack • Mai 2025 - Presente</span>
-                                    <h3 style="font-size: 1.8rem; margin-bottom: 10px;">OdracirCode</h3>
-                                    <p style="color: var(--text-dim); font-size: 1rem;">Projetos full-stack modernos focados em escalabilidade e integração nativa de APIs, sediada no Canadá.</p>
+                                    <h3 style="font-size: 1.5rem; margin-bottom: 10px;">OdracirCode</h3>
+                                    <p style="color: var(--text-dim); font-size: 0.9rem;">Projetos full-stack modernos focados em escalabilidade e integração nativa de APIs.</p>
                                     <div class="proj-grid">
                                         <div class="proj-feature hover-target">
-                                            <i data-lucide="layers" size="24" color="#0071e3" style="margin-bottom: 15px;"></i>
+                                            <i data-lucide="layers" size="24" color="#0071e3" style="margin-bottom: 10px;"></i>
                                             <h4>Stack Principal</h4>
-                                            <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Desenvolvimento utilizando React, Tailwind CSS e backend em Laravel.</p>
+                                            <p style="font-size: 0.85rem; color: #888; margin-top: 5px;">React, Tailwind CSS e backend em Laravel.</p>
                                         </div>
                                         <div class="proj-feature hover-target">
-                                            <i data-lucide="message-circle" size="24" color="#32D74B" style="margin-bottom: 15px;"></i>
+                                            <i data-lucide="message-circle" size="24" color="#32D74B" style="margin-bottom: 10px;"></i>
                                             <h4>Integração Twilio API</h4>
-                                            <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Sistema automatizado de WhatsApp e E-mail no cadastro de clientes para o sistema Palácio dos Leilões.</p>
+                                            <p style="font-size: 0.85rem; color: #888; margin-top: 5px;">Sistema automatizado de WhatsApp no cadastro de clientes.</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div id="tab-cajuu" class="project-view">
                                     <span class="proj-badge">Co-founder & Full-stack • Nov 2023 - Jun 2025</span>
-                                    <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Cajuu.app (EUA)</h3>
-                                    <p style="color: var(--text-dim); font-size: 1rem;">Plataforma logística americana com monitoramento em tempo real.</p>
+                                    <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Cajuu.app (EUA)</h3>
+                                    <p style="color: var(--text-dim); font-size: 0.9rem;">Plataforma logística americana com monitoramento em tempo real.</p>
                                     <div class="proj-grid">
                                         <div class="proj-feature hover-target">
-                                            <i data-lucide="cpu" size="24" color="#10a37f" style="margin-bottom: 15px;"></i>
+                                            <i data-lucide="cpu" size="24" color="#10a37f" style="margin-bottom: 10px;"></i>
                                             <h4>IA Generativa no Backend</h4>
-                                            <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Módulo Laravel para integração ChatGPT via API, análise contextual e respostas automáticas.</p>
+                                            <p style="font-size: 0.85rem; color: #888; margin-top: 5px;">Módulo Laravel para integração ChatGPT via API.</p>
                                         </div>
                                     </div>
                                     <a href="https://cajuu.app/" target="_blank" class="proj-link-btn hover-target"><i data-lucide="external-link" size="18"></i> Acessar Cajuu.app</a>
@@ -399,27 +472,27 @@
 
                                 <div id="tab-risus" class="project-view">
                                     <span class="proj-badge">Desenvolvedor Full-stack • Fev 2025 - Mai 2025</span>
-                                    <h3 style="font-size: 1.8rem; margin-bottom: 10px;">CRM Agência Risus</h3>
-                                    <p style="color: var(--text-dim); font-size: 1rem;">Desenvolvimento de plataforma CRM focada em automações complexas e fluxo de leads.</p>
+                                    <h3 style="font-size: 1.5rem; margin-bottom: 10px;">CRM Agência Risus</h3>
+                                    <p style="color: var(--text-dim); font-size: 0.9rem;">Desenvolvimento de plataforma CRM focada em automações complexas e fluxo de leads.</p>
                                     <div class="proj-grid">
                                         <div class="proj-feature hover-target">
-                                            <i data-lucide="workflow" size="24" color="#ff9900" style="margin-bottom: 15px;"></i>
+                                            <i data-lucide="workflow" size="24" color="#ff9900" style="margin-bottom: 10px;"></i>
                                             <h4>Next.js + n8n</h4>
-                                            <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Interface otimizada em Next.js com automações profundas no n8n para integração entre sistemas externos.</p>
+                                            <p style="font-size: 0.85rem; color: #888; margin-top: 5px;">Interface otimizada em Next.js com automações profundas no n8n.</p>
                                         </div>
                                     </div>
-                                    <a href="https://crm.agenciarisus.com.br/login" target="_blank" class="proj-link-btn hover-target"><i data-lucide="external-link" size="18"></i> Ver Sistema de Login CRM</a>
+                                    <a href="https://crm.agenciarisus.com.br/login" target="_blank" class="proj-link-btn hover-target"><i data-lucide="external-link" size="18"></i> Ver CRM</a>
                                 </div>
 
                                 <div id="tab-ia" class="project-view">
                                     <span class="proj-badge">Projetos & Scripts Pessoais</span>
-                                    <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Modelos de IA & NLP</h3>
-                                    <p style="color: var(--text-dim); font-size: 1rem;">Experiência prática na implementação de modelos avançados de IA e Visão Computacional.</p>
+                                    <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Modelos de IA & NLP</h3>
+                                    <p style="color: var(--text-dim); font-size: 0.9rem;">Experiência prática na implementação de modelos avançados de IA e Visão Computacional.</p>
                                     <div class="proj-grid">
                                         <div class="proj-feature hover-target">
-                                            <i data-lucide="brain-circuit" size="24" color="#e040fb" style="margin-bottom: 15px;"></i>
+                                            <i data-lucide="brain-circuit" size="24" color="#e040fb" style="margin-bottom: 10px;"></i>
                                             <h4>BERTimbau + Python</h4>
-                                            <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Script de análise de sentimentos com NLP aplicado à linguagem em português.</p>
+                                            <p style="font-size: 0.85rem; color: #888; margin-top: 5px;">Script de análise de sentimentos com NLP aplicado à linguagem em português.</p>
                                         </div>
                                     </div>
                                     <a href="https://github.com/Mauricio2025/Python-BERTimbau" target="_blank" class="proj-link-btn hover-target"><i data-lucide="github" size="18"></i> Ver Repositório BERTimbau</a>
@@ -438,6 +511,8 @@
 
                 </div>
             </div>
+            
+            <div class="ios-home-indicator" onclick="closeWindow('safari-app')"></div>
         </div>
 
         <div class="mac-window" id="terminal-app">
@@ -454,6 +529,7 @@
                 <div id="typewriter-code"></div>
                 <div class="terminal-logs" id="terminal-logs"></div>
             </div>
+            <div class="ios-home-indicator" onclick="closeWindow('terminal-app')"></div>
         </div>
 
         <div class="dock-container">
@@ -547,26 +623,29 @@
             }, 2000);
         });
 
-        // 3. CURSOR LOGIC
+        // 3. CURSOR LOGIC (DESKTOP ONLY)
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
         let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
 
         document.addEventListener('mousemove', (e) => {
+            if(window.innerWidth <= 768) return; // Prevent on mobile
             mouseX = e.clientX; mouseY = e.clientY;
             cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
         });
 
         function animateFollower() {
-            followerX += (mouseX - followerX) * 0.15;
-            followerY += (mouseY - followerY) * 0.15;
-            follower.style.left = followerX + 'px'; follower.style.top = followerY + 'px';
+            if(window.innerWidth > 768) {
+                followerX += (mouseX - followerX) * 0.15;
+                followerY += (mouseY - followerY) * 0.15;
+                follower.style.left = followerX + 'px'; follower.style.top = followerY + 'px';
+            }
             requestAnimationFrame(animateFollower);
         }
         animateFollower();
 
         document.querySelectorAll('.hover-target, button, a, .dot, .desktop-icon').forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseenter', () => { if(window.innerWidth > 768) document.body.classList.add('cursor-hover') });
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
 
@@ -578,7 +657,7 @@
             win.classList.add('open');
             focusWindow(win);
             
-            if(dockId) {
+            if(dockId && window.innerWidth > 768) {
                 document.getElementById(dockId).classList.add('active');
             }
 
@@ -610,7 +689,7 @@
             win.style.zIndex = highestZ;
         }
 
-        // DRAG WINDOW LOGIC
+        // DRAG WINDOW LOGIC (DESKTOP ONLY)
         document.querySelectorAll('.mac-window').forEach(win => {
             win.addEventListener('mousedown', () => focusWindow(win));
             dragElement(win);
@@ -622,6 +701,7 @@
             if (headers.length > 0) headers[0].onmousedown = dragMouseDown;
             
             function dragMouseDown(e) {
+                if(window.innerWidth <= 768) return; // Bloquear drag no mobile
                 if(e.target.classList.contains('dot') || e.target.closest('.safari-nav-group') || e.target.closest('.safari-right') || elmnt.classList.contains('maximized')) return;
                 e.preventDefault();
                 pos3 = e.clientX; pos4 = e.clientY;
@@ -681,8 +761,8 @@
                     .replace(/await/g, '<span style="color:#d2a8ff">await</span>')
                     .replace(/return/g, '<span style="color:#d2a8ff">return</span>')
                     .replace(/'(.*?)'/g, '<span style="color:#79c0ff">\'$1\'</span>')
-                    .replace(/([a-zA-Z]+)(?=\s=)/g, '<span style="color:#ff7b72">$1</span>') // Prop colors
-                    .replace(/([0-9]+)/g, '<span style="color:#79c0ff">$1</span>'); // Number colors
+                    .replace(/([a-zA-Z]+)(?=\s=)/g, '<span style="color:#ff7b72">$1</span>')
+                    .replace(/([0-9]+)/g, '<span style="color:#79c0ff">$1</span>');
                 
                 typeContainer.innerHTML = currentHTML.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;');
                 charIndex++;
