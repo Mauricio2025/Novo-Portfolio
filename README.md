@@ -1,73 +1,55 @@
 <div align="center">
-  <h1>Olá, eu sou o Maurício Souza! 👋</h1>
-  <h3>Engenheiro de Software Full Stack e Mobile 💻📱</h3>
-  
-  <p>
-    Apaixonado por criar MVPs escaláveis com UX premium e automações avançadas. [cite: 4]
-  </p>
+  <h1>🍎 macOS Interactive Portfolio</h1>
+  <p>Um portfólio interativo e altamente realista simulando a interface do macOS, construído para destacar projetos, habilidades e experiência profissional de forma única e imersiva.</p>
 
-  <p align="center">
-    <a href="https://jmscode.com.br" target="_blank">
-      <img src="https://img.shields.io/badge/Portfólio-jmscode.com.br-0071e3?style=for-the-badge&logo=safari&logoColor=white" alt="Portfolio" />
-    </a>
-    <a href="https://linkedin.com/in/mauricio-souza" target="_blank">
-      <img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-    </a>
-    <a href="mailto:msouza.dev@outlook.com">
-      <img src="https://img.shields.io/badge/Email-msouza.dev@outlook.com-D14836?style=for-the-badge&logo=microsoft-outlook&logoColor=white" alt="Email" />
-    </a>
+  <p>
+    <a href="#-sobre-o-projeto">Sobre</a> • 
+    <a href="#-features">Features</a> • 
+    <a href="#-tecnologias">Tecnologias</a> • 
+    <a href="#-como-executar">Como Executar</a>
   </p>
 </div>
 
 ---
 
-## 👨‍💻 Sobre Mim
+## 💻 Sobre o Projeto
 
-- [cite_start]🏗️ **Atuação Profissional:** Possuo ampla experiência em arquitetura de sistemas e integrações com Inteligência Artificial[cite: 2]. [cite_start]Atualmente sou Desenvolvedor Full-stack na **OdracirCode**[cite: 25].
-- [cite_start]🚀 **Especialidade:** Tenho forte domínio na criação de sistemas end-to-end utilizando **Node.js, React Native e Laravel**[cite: 3].
-- [cite_start]📚 **Estudos Atuais:** Estou cursando **Ciência de Dados com Inteligência Artificial (UniDomBosco)** [cite: 72, 73] [cite_start]para unir performance à inteligência de dados [cite: 4][cite_start], além de ser Bacharelando em **Ciência da Computação (UNOPAR)**[cite: 71].
-- [cite_start]💡 **Foco:** Clean Code, APIs RESTful, automações (n8n, Twilio) e interfaces de alta conversão[cite: 3, 26, 68].
+Este projeto é uma aplicação web estática ("Single Page Application") que simula o ecossistema desktop da Apple. O objetivo principal é proporcionar aos recrutadores e visitantes uma experiência de usuário (UX) premium e memorável, demonstrando atenção aos detalhes, domínio avançado de CSS e manipulação do DOM com JavaScript Vanilla.
 
-## 🛠️ Tecnologias e Ferramentas
+A janela principal ("Safari") contém o portfólio real, estruturado em um layout moderno de *Bento Grid*, enquanto outras janelas ("Terminal") demonstram interatividade avançada.
 
-<div align="center">
-  
-  ### 🖥️ Front-end & Mobile
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
-  <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
-  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" />
-  <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+## ✨ Features
 
-  ### ⚙️ Back-end & Dados
-  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
-  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" />
-  <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white" />
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+A interface foi programada do zero para simular o comportamento de um sistema operacional real:
 
-  ### 🤖 Integrações & IA
-  <img src="https://img.shields.io/badge/ChatGPT_API-412991?style=for-the-badge&logo=openai&logoColor=white" />
-  <img src="https://img.shields.io/badge/Twilio-F22F46?style=for-the-badge&logo=Twilio&logoColor=white" />
-  <img src="https://img.shields.io/badge/n8n-FF6D5A?style=for-the-badge&logo=n8n&logoColor=white" />
-  
-</div>
+* **Boot Sequence Realista:** Tela inicial de carregamento simulando o boot do macOS.
+* **Custom Cursor:** Cursor personalizado com efeito de "follower" e interações de hover em elementos clicáveis.
+* **Window Management:**
+  * Janelas flutuantes que podem ser arrastadas livremente pela tela (Draggable).
+  * Botões "Traffic Lights" funcionais (Fechar e Maximizar).
+  * Controle de Z-index (a janela clicada vem para a frente).
+* **Dock Interativo:** Ícones com animação de escala e "bounce" nativo do Mac, além de tooltips indicadores de aplicativos abertos.
+* **Terminal Emulado:** Animação estilo "Typewriter" rodando um script que apresenta o perfil do desenvolvedor, seguido por simulação de logs do sistema.
+* **Bento Grid Layout:** Exibição clara e escaneável de skills, tempo de experiência e background acadêmico.
+* **Tab Switcher de Projetos:** Sistema de abas dentro do layout para alternar entre os projetos profissionais (OdracirCode, Cajuu.app, Agência Risus) sem recarregar a página.
 
-## 📌 Projetos em Destaque
+## 🛠 Tecnologias
 
-* [cite_start]📦 **[Cajuu.app](https://cajuu.app/)** - Plataforma logística nos EUA com monitoramento em tempo real[cite: 14]. [cite_start]Atuei como Co-founder e desenvolvi módulos com IA para análises automatizadas[cite: 27, 28].
-* [cite_start]📈 **[CRM Agência Risus](https://crm.agenciarisus.com.br/login)** - Sistema de CRM focado em alta performance utilizando Next.js e automações complexas com n8n[cite: 15, 30].
-* [cite_start]🧠 **NLP & BERTimbau** - Script de análise de sentimentos utilizando Processamento de Linguagem Natural em Python[cite: 66].
+Este projeto foi construído propositalmente **sem frameworks pesados**, para demonstrar domínio dos fundamentos da web:
 
-## 📊 Minhas Estatísticas
+* **HTML5:** Estruturação semântica.
+* **CSS3:** * Variáveis CSS (Custom Properties).
+  * Flexbox & CSS Grid (para o Bento Layout).
+  * Transições, Animações e Filtros Avançados (`backdrop-filter` para o efeito de vidro/blur do macOS).
+* **JavaScript (Vanilla - ES6+):** * Manipulação do DOM.
+  * Event Listeners (drag & drop, mouse tracking).
+  * Lógica assíncrona (`setTimeout`, `setInterval`) para animações e relógio em tempo real.
+* **[Lucide Icons](https://lucide.dev/):** Biblioteca de ícones open-source e leve.
 
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Mauricio2025&show_icons=true&theme=radical&hide_border=true" width="48%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Mauricio2025&layout=compact&theme=radical&hide_border=true" width="48%" />
-</div>
+## 🚀 Como Executar
 
-<br>
-<div align="center">
-  <i>"Unindo performance à inteligência de dados."</i>
-</div>
+Por ser um projeto puramente estático, não há necessidade de build ou instalação de dependências.
+
+1. Clone este repositório:
+   ```bash
+   git clone [https://github.com/Mauricio2025/NOME-DO-SEU-REPOSITORIO-AQUI.git](https://github.com/Mauricio2025/NOME-DO-SEU-REPOSITORIO-AQUI.git)
